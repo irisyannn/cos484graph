@@ -1,0 +1,30 @@
+input_dir_folder: /home/mbugueno/TC_graphs/Data_Graphs/data_bbc_prep_w2v/1.C/
+output_dir_folder: /home/mbugueno/
+results_dir_folder: /home/mbugueno/GRTC_GNNs/IntuitiveGraphs/Results/
+
+filename: BBC_graphs_C
+
+dataset: bbc
+
+num_classes: 5
+
+with_edge_attr: True 
+
+pre_trained_embedding: word2vec-google-news-300
+
+pre_file: WANDB_ 
+
+node_feature_init: word2vec
+
+training: 
+    batch_size: 16
+    max_epochs: 100
+    dropout: 0.2
+    lr: 0.001
+    
+experiment: 
+  runs: 1 
+  patience: 2
+  type_model: GIN
+  num_layers: 2
+  hidden_dims: 64
