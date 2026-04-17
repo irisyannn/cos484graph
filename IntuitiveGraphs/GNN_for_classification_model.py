@@ -274,7 +274,7 @@ def run_bunch_experiments(dataset, dataset_test, path_models, path_results, n_la
                     trues = torch.concat(trues)
 
                     acc=(trues ==preds).float().mean() 
-                    f1_score = F1Score(task="multiclass", num_classes, average=None)
+                    f1_score = F1Score(task="multiclass", num_classes=num_classes, average=None)
                     f1_all = f1_score(preds, trues)
                     print ("Acc:", acc, file=f)
                     print ("Acc:", acc)
