@@ -144,7 +144,7 @@ class MyGraphDataset(Dataset):
 
     def len(self):
         return self.data.shape[0]
-
+    
     def get(self, idx):
         """ - Equivalent to __getitem__ in pytorch
             - Is not needed for PyG's InMemoryDataset
@@ -157,6 +157,16 @@ class MyGraphDataset(Dataset):
                                  f'data_{idx}.pt'), weights_only=False)        
         return data
     
+    @property
+    def num_classes(self):
+        if hasattr(self, '_num_classes'):
+            return self._num_classes
+        return super().num_classes
+
+    @num_classes.setter
+    def num_classes(self, value):
+        self._num_classes = value
+
     
     
 class MyGraphDatasetContext(Dataset):
@@ -449,6 +459,17 @@ class MyGraphDatasetEmb(Dataset):
             data = torch.load(os.path.join(self.processed_dir, 
                                  f'data_{idx}.pt'), weights_only=False)        
         return data
+    
+    @property
+    def num_classes(self):
+        if hasattr(self, '_num_classes'):
+            return self._num_classes
+        return super().num_classes
+
+    @num_classes.setter
+    def num_classes(self, value):
+        self._num_classes = value
+        
     
     
 def from_dataset2df(name_data, dataset_partition, columns): 
