@@ -151,10 +151,10 @@ class MyGraphDataset(Dataset):
         """
         if self.test:
             data = torch.load(os.path.join(self.processed_dir, 
-                                 f'data_test_{idx}.pt'))
+                                 f'data_test_{idx}.pt'), weights_only=False)
         else:
             data = torch.load(os.path.join(self.processed_dir, 
-                                 f'data_{idx}.pt'))        
+                                 f'data_{idx}.pt'), weights_only=False)        
         return data
     
     
@@ -337,10 +337,10 @@ class MyGraphDatasetContext(Dataset):
         """
         if self.test:
             data = torch.load(os.path.join(self.processed_dir, 
-                                 f'data_test_{idx}.pt'))
+                                 f'data_test_{idx}.pt'), weights_only=False)
         else:
             data = torch.load(os.path.join(self.processed_dir, 
-                                 f'data_{idx}.pt'))        
+                                 f'data_{idx}.pt'), weights_only=False)        
         return data
     
  
@@ -444,10 +444,10 @@ class MyGraphDatasetEmb(Dataset):
         """
         if self.test:
             data = torch.load(os.path.join(self.processed_dir, 
-                                 f'data_test_{idx}.pt'))
+                                 f'data_test_{idx}.pt'), weights_only=False)
         else:
             data = torch.load(os.path.join(self.processed_dir, 
-                                 f'data_{idx}.pt'))        
+                                 f'data_{idx}.pt'), weights_only=False)        
         return data
     
     
