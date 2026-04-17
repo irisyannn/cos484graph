@@ -12,7 +12,14 @@ import torch_geometric.utils as pyg_utils
 import torch.optim as optim
 import torch.nn as nn
 
-from datasets import list_datasets, load_dataset, list_metrics, load_metric
+# from datasets import list_datasets, load_dataset, list_metrics, load_metric
+from datasets import load_dataset
+from huggingface_hub import list_datasets
+try:
+    from datasets import list_metrics, load_metric
+except ImportError:
+    from evaluate import list_evaluation_modules as list_metrics
+    from evaluate import load as load_metric
 from nltk.tokenize import word_tokenize, wordpunct_tokenize, sent_tokenize
 from sklearn.metrics import f1_score, accuracy_score
 from torch_geometric.data import Dataset, Data, download_url
