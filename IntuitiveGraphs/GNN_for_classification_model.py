@@ -46,7 +46,7 @@ class GNN_LightingModel(pl.LightningModule):
         loss = self.criterion(out, data.y)
         pred = out.argmax(dim=1) 
         acc=(pred == data.y).sum()/len(data.y)
-        f1_score = F1Score(num_classes=self.num_classes, average="macro").to(self.device)
+        f1_score = F1Score(task="multiclass", num_classes=self.num_classes, average="macro").to(self.device)
         f1_ma=f1_score(pred, data.y)
         return {"loss": loss, "f1ma":f1_ma, 'acc':acc} 
     
@@ -274,7 +274,7 @@ def run_bunch_experiments(dataset, dataset_test, path_models, path_results, n_la
                     trues = torch.concat(trues)
 
                     acc=(trues ==preds).float().mean() 
-                    f1_score = F1Score(num_classes, average=None)
+                    f1_score = F1Score(task="multiclass", num_classes, average=None)
                     f1_all = f1_score(preds, trues)
                     print ("Acc:", acc, file=f)
                     print ("Acc:", acc)
