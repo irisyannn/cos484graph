@@ -7,7 +7,11 @@ import matplotlib.pyplot as plt
 import networkx as nx
 
 from collections import Counter
-from datasets import list_datasets, load_dataset, list_metrics, load_metric
+from datasets import load_dataset
+from evaluate import load as load_metric
+from evaluate import list_evaluation_modules as list_metrics
+from huggingface_hub import list_datasets
+
 from itertools import groupby, zip_longest, compress
 from joblib import Parallel, delayed
 from nltk.tokenize import word_tokenize, wordpunct_tokenize, sent_tokenize
