@@ -198,6 +198,8 @@ def create_graph2Dataframe(df_text, df_labels, directed=True, plot=False, mode='
     filas=[]
     anterior=0
     for i in range(len(nodes)): 
+        if len(nodes[i]) == 0:
+            continue
         text=df_text[i] 
         nodos_sam=list(nodes[i]) 
         edges_sam=list(edges[i])
@@ -225,13 +227,13 @@ def create_graph2Dataframe(df_text, df_labels, directed=True, plot=False, mode='
 
         f_edges=[list_source,list_target]         
         f_edges_f=[list_source_f,list_target_f] 
-        fila=[f_nodos_f, nodos_sam, f_edges_f,label]
+        fila=[f_nodos_f, nodos_sam, f_edges_f, label, df_text[i]]
         if weighted:
-            fila=[f_nodos_f, nodos_sam, f_edges_f,list_attr,label]
+            fila=[f_nodos_f, nodos_sam, f_edges_f, list_attr, label, df_text[i]]
         filas.append(fila)
-    final_columns=['nodes', 'node_features', 'edges', 'label']
+    final_columns=['nodes', 'node_features', 'edges', 'label', 'raw_text']
     if weighted:
-        final_columns=['nodes', 'node_features', 'edges', 'edges_attr', 'label']
+        final_columns=['nodes', 'node_features', 'edges', 'edges_attr', 'label', 'raw_text']
         
     df = pd.DataFrame(filas, columns = final_columns)
     return df
